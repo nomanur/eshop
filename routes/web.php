@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Front\AddtocartController;
+use App\Http\Controllers\Front\FrontCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +35,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
     Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
 });
+
+Route::get('/categoryproduct/{id}', [FrontCategoryController::class, 'categoryproduct'])->name('front.categoryproduct');
+Route::get('/singleproduct/{id}', [FrontCategoryController::class, 'singleproduct'])->name('front.singleproduct');
+
+Route::get('/addtocart{id}', [AddtocartController::class, 'addtocart'])->name('addtocart');

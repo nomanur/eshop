@@ -143,11 +143,11 @@
                                 <a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
                             </div>
                             <div class="sinlge-bar shopping">
-                                <a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
+                                <a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">{{auth()->user()->cart()->count()}}</span></a>
                                 <!-- Shopping Item -->
                                 <div class="shopping-item">
                                     <div class="dropdown-cart-header">
-                                        <span>2 Items</span>
+                                        <span>{{auth()->user()->cart()->count()}} Items</span>
                                         <a href="#">View Cart</a>
                                     </div>
                                     <ul class="shopping-list">
@@ -251,7 +251,7 @@
                                     <li><a href="#">denim </a></li> -->
 
                                     @foreach ($categories as $category)
-                                    <li><a href="#">{{$category->name}}</a></li>
+                                    <li><a href="{{route('front.categoryproduct', $category->id)}}">{{$category->name}}</a></li>
                                     @endforeach
                                 </ul>
                             </div>

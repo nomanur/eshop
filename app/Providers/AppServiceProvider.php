@@ -23,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
+
+        // $userid = 40;
+
+        // view()->share(compact('userid'));
     }
 }
