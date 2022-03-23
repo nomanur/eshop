@@ -73,6 +73,7 @@
                             <ul class="list-main">
                                 <li><i class="ti-headphone-alt"></i> +060 (800) 801-582</li>
                                 <li><i class="ti-email"></i> support@shophub.com</li>
+                                <li><i class="ti-email"></i> {{app()->currentLocale()}}</li>
                             </ul>
                         </div>
                         <!--/ End Top Left -->
@@ -81,10 +82,11 @@
                         <!-- Top Right -->
                         <div class="right-content">
                             <ul class="list-main">
-                                <li><i class="ti-location-pin"></i> Store location</li>
+                                <li><i class="ti-location-pin"></i> {{__('main.Store_location')}}</li>
                                 <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
                                 <li><i class="ti-user"></i> <a href="#">My account</a></li>
-                                <li><i class="ti-power-off"></i><a href="login.html#">Login</a></li>
+                                <li><i class="ti-power-off"></i><a href="{{route('login')}}">Login</a></li>
+                                <li><i class="ti-power-off"></i><a href="{{route('mlogout')}}">Logout</a></li>
                             </ul>
                         </div>
                         <!-- End Top Right -->
@@ -107,32 +109,34 @@
                             <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
                             <!-- Search Form -->
                             <div class="search-top">
-                                <form class="search-form">
-                                    <input type="text" placeholder="Search here..." name="search">
-                                    <button value="search" type="submit"><i class="ti-search"></i></button>
-                                </form>
+
+                                <input type="text" placeholder="Search heres..." name="search">
+                                <button value="search" type="submit"><i class="ti-search"></i></button>
+
                             </div>
                             <!--/ End Search Form -->
                         </div>
                         <!--/ End Search Form -->
                         <div class="mobile-nav"></div>
                     </div>
-                    <div class="col-lg-8 col-md-7 col-12">
-                        <div class="search-bar-top">
-                            <div class="search-bar">
-                                <select>
-                                    <option selected="selected">All Category</option>
-                                    <option>watch</option>
-                                    <option>mobile</option>
-                                    <option>kid’s item</option>
-                                </select>
-                                <form>
-                                    <input name="search" placeholder="Search Products Here....." type="search">
+                    <form action="{{route('product.search')}}" method="POST">
+                        @csrf
+                        <div class="col-lg-8 col-md-7 col-12">
+                            <div class="search-bar-top">
+                                <div class="search-bar">
+                                    <select>
+                                        <option selected="selected">All Category</option>
+                                        <option>watch</option>
+                                        <option>mobile</option>
+                                        <option>kid’s item</option>
+                                    </select>
+                                    <input name="search" placeholder="Search Products Heres....." type="search">
                                     <button class="btnn"><i class="ti-search"></i></button>
-                                </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
+
                     <div class="col-lg-2 col-md-3 col-12">
                         <div class="right-bar">
                             <!-- Search Form -->
@@ -142,6 +146,7 @@
                             <div class="sinlge-bar">
                                 <a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
                             </div>
+                            @auth
                             <div class="sinlge-bar shopping">
                                 <a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">{{auth()->user()->cart()->count()}}</span></a>
                                 <!-- Shopping Item -->
@@ -174,6 +179,8 @@
                                 </div>
                                 <!--/ End Shopping Item -->
                             </div>
+
+                            @endauth
                         </div>
                     </div>
                 </div>

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Front\AddtocartController;
 use App\Http\Controllers\Front\FrontCategoryController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,10 @@ use App\Http\Controllers\Front\FrontCategoryController;
 Route::get('/', [HomeController::class, 'index']);
 
 Auth::routes();
+Route::get('/mlogout', function () {
+    Auth::logout();
+    return 'logged out';
+})->name('mlogout');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -39,4 +44,9 @@ Route::prefix('admin')->group(function () {
 Route::get('/categoryproduct/{id}', [FrontCategoryController::class, 'categoryproduct'])->name('front.categoryproduct');
 Route::get('/singleproduct/{id}', [FrontCategoryController::class, 'singleproduct'])->name('front.singleproduct');
 
+Route::post('/product/search', [App\Http\Controllers\ProductController::class, 'search'])->name('product.search');
+
 Route::get('/addtocart{id}', [AddtocartController::class, 'addtocart'])->name('addtocart');
+
+
+Route::get('lang/{lang}', [App\Http\Controllers\HomeController::class, 'lang']);
